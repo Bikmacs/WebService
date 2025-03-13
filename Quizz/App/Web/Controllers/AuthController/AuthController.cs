@@ -34,8 +34,7 @@ public class AuthController(IAuthService authService) : ControllerBase
 
         if (!user) return Unauthorized("Пользователь с таким именем уже существует");
         return Ok($"{rnd.ToString()}Регистрация прошла успешно.");
-        
-        
-       
     }
+    
+    
 }

@@ -28,6 +28,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
         new MySqlServerVersion(new Version(8, 0, 25))));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAddBooksService, AddBooksService>();
 
 var app = builder.Build();
 

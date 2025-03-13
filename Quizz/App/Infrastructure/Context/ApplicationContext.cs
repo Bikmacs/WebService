@@ -9,11 +9,12 @@ namespace Quizz.App.Infrastructure.Context
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            Database.EnsureCreated(); 
+            Database.EnsureCreated();
         }
 
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Person> People { get; set; } = null!;
+        public DbSet<Book> Books { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
