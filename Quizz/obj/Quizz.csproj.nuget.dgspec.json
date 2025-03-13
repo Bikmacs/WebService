@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bikmacs\\Desktop\\Quizz\\Quizz\\Quizz.csproj": {}
+    "C:\\ASP.NET\\Quizz\\Quizz\\Quizz.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bikmacs\\Desktop\\Quizz\\Quizz\\Quizz.csproj": {
+    "C:\\ASP.NET\\Quizz\\Quizz\\Quizz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bikmacs\\Desktop\\Quizz\\Quizz\\Quizz.csproj",
+        "projectUniqueName": "C:\\ASP.NET\\Quizz\\Quizz\\Quizz.csproj",
         "projectName": "Quizz",
-        "projectPath": "C:\\Users\\Bikmacs\\Desktop\\Quizz\\Quizz\\Quizz.csproj",
+        "projectPath": "C:\\ASP.NET\\Quizz\\Quizz\\Quizz.csproj",
         "packagesPath": "C:\\Users\\Bikmacs\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bikmacs\\Desktop\\Quizz\\Quizz\\obj\\",
+        "outputPath": "C:\\ASP.NET\\Quizz\\Quizz\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,7 +43,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
         "SdkAnalysisLevel": "9.0.100"
       },
@@ -66,6 +66,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.0, )"
             },
@@ -101,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
