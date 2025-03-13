@@ -7,16 +7,9 @@ namespace Quizz.App.Web.Controllers.BookController;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AddBooksController : ControllerBase
+public class AddBooksController(IAddBooksService addBooksService) : ControllerBase
 {
-    private readonly IAddBooksService _addBooksService;
-
-    public AddBooksController(IAddBooksService addBooksService)
-    {
-        _addBooksService = addBooksService;
-    }
-
-    [HttpPost("add")]
+    [HttpPost("Add")]
     public async Task<IActionResult> Add([FromBody] Book book)
     {
         if (string.IsNullOrEmpty(book.NameBook) || string.IsNullOrEmpty(book.Izdatel))
@@ -24,11 +17,26 @@ public class AddBooksController : ControllerBase
             return BadRequest("Некорректные данные книги.");
         }
         
-        var result = await _addBooksService.AddBook(book);
+        var result = await addBooksService.AddBook(book);
         if (!result)
         {
             return Conflict("Книга с таким названием уже существует.");
         }
         return Ok("Книга успешно добавлена.");
     }
+    [HttpPost("Delete/{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        if (id <= 0)
+        {
+            return BadRequest("Некорректные Id книги.");
+        }
+        var result = await addBooksService.DeleteBook(id);
+        if (!result)
+        {
+            return Conflict("Книга не удалена");
+        }
+        return Ok("Книга успешно удалена");
+    }
+    
 }

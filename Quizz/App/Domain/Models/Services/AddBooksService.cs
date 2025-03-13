@@ -21,12 +21,17 @@ public class AddBooksService : IAddBooksService
         return true;
     }
 
-    public async Task<bool> DeleteBook(Book book)
+    public async Task<bool> DeleteBook(int id)
     {
-        var exist = await _context.Books.FirstOrDefaultAsync(u => u.Id == book.Id);
-        if (exist != null) _context.Books.Remove(exist);
-        await _context.SaveChangesAsync();
-        return true;
+        var exist = await _context.Books.FirstOrDefaultAsync(u => u.Id == id);
+        if (exist != null)
+        {
+            _context.Books.Remove(exist);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        return false;
     }
+
 
 }
