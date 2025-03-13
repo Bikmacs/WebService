@@ -8,10 +8,10 @@ namespace Quizz.App.Domain.Models.User
         public int Id { get; set; }
 
         [Required]
-        public string NameBook { get; set; }
+        public string NameBook {get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Izdatel { get; set; }
 
         [Required]

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Quizz.App.Domain.Models.User;
 using Quizz.App.Infrastructure.Context;
 
-namespace Quizz.App.Domain.Models.Services;
+namespace Quizz.App.Domain.Models.Services.BookService;
 
 public class AddBooksService : IAddBooksService
 {
@@ -31,6 +31,11 @@ public class AddBooksService : IAddBooksService
             return true;
         }
         return false;
+    }
+
+    public async Task<List<Book>> AllBooks()
+    {
+        return await _context.Books.ToListAsync();
     }
 
 

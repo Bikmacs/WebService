@@ -3,7 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using Quizz.App.Infrastructure.Context;
 
-namespace Quizz.App.Domain.Models.Services;
+namespace Quizz.App.Domain.Models.Services.AuthService;
 
 public class AuthService : IAuthService
 {

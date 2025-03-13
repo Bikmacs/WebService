@@ -2,16 +2,22 @@ using Microsoft.EntityFrameworkCore;
 using Quizz.App.Infrastructure.Context;
 using Microsoft.OpenApi.Models;
 using Quizz.App.Domain.Models.Services;
+using Quizz.App.Domain.Models.Services.AuthService;
+using Quizz.App.Domain.Models.Services.BookService;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://0.0.0.0:5000"); 
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins", builder =>
-        builder.AllowAnyOrigin()
+    options.AddPolicy("AllowAllOrigins", policy =>
+        policy.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>

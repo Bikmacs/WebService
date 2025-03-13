@@ -1,4 +1,4 @@
-namespace Quizz.App.Domain.Models.Services;
+namespace Quizz.App.Domain.Models.Services.AuthService;
 
 public interface IAuthService
 {

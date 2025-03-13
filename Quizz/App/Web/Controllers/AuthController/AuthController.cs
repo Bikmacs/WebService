@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Quizz.App.Domain.Models;
 using Quizz.App.Domain.Models.Services;
+using Quizz.App.Domain.Models.Services.AuthService;
 using Quizz.App.Domain.Models.User;
 
 namespace Quizz.App.Web.Controllers.AuthController;

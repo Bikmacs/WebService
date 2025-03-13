@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Quizz.App.Domain.Models.Services;
+using Quizz.App.Domain.Models.Services.BookService;
 using Quizz.App.Domain.Models.User;
 
 namespace Quizz.App.Web.Controllers.BookController;
@@ -37,6 +38,16 @@ public class AddBooksController(IAddBooksService addBooksService) : ControllerBa
             return Conflict("Книга не удалена");
         }
         return Ok("Книга успешно удалена");
+    }
+    [HttpGet("AllBooks")]
+    public async Task<IActionResult> AllBooks()
+    {
+        var viewBooks = await addBooksService.AllBooks();
+        if (!viewBooks.Any())
+        {
+            return NotFound("Нет данных о книгах.");
+        }
+        return Ok(viewBooks);
     }
     
 }
