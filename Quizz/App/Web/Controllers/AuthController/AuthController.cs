@@ -1,41 +1,65 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Quizz.App.Domain.Models;
 using Quizz.App.Domain.Models.Services;
 using Quizz.App.Domain.Models.Services.AuthService;
 using Quizz.App.Domain.Models.User;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
-namespace Quizz.App.Web.Controllers.AuthController;
-
-[ApiController]
-[Route("api/[controller]")]
-public class AuthController(IAuthService authService) : ControllerBase
+namespace Quizz.App.Web.Controllers.AuthController
 {
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] AuthRequest authRequest)
+    [ApiController]
+    [Route("api/Auth")]
+    public class AuthController : ControllerBase
     {
-        if (string.IsNullOrEmpty(authRequest.Username) || string.IsNullOrEmpty(authRequest.Password))
-            return Unauthorized("Неверное имя пользователя или пароль.");
+        private readonly IAuthService _authService;
+        private readonly IConfiguration _configuration;
 
-        var user = await authService.Authenticate(authRequest);
-        if (user == null)
-            return Unauthorized("Неверное имя пользователя или пароль.");
-        return Ok("Вход выполнен успешно.");
+        public AuthController(IAuthService authService, IConfiguration configuration)
+        {
+            _authService = authService;
+            _configuration = configuration;
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] AuthRequest authRequest)
+        {
+            if (string.IsNullOrEmpty(authRequest.Username) || string.IsNullOrEmpty(authRequest.Password))
+                return Unauthorized("Неверное имя пользователя или пароль.");
+
+            var user = await _authService.Authenticate(authRequest);
+            if (user == null)
+                return Unauthorized("Неверное имя пользователя или пароль.");
+
+            // 🔥 Генерация JWT токена
+            var token = GenerateJwtToken(user);
+
+            return Ok(new { token });
+        }
+
+        private string GenerateJwtToken(User user)
+        {
+            var jwtSettings = _configuration.GetSection("Jwt");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username)
+            };
+
+            var token = new JwtSecurityToken(
+                issuer: jwtSettings["Issuer"],
+                audience: jwtSettings["Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(1), // Токен истекает через 1 час
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
     }
-
-
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] User newUser)
-    {
-        Random rnd = new Random();
-        rnd.Next(1, 100);
-        if (string.IsNullOrEmpty(newUser.Username) || string.IsNullOrEmpty(newUser.Password))
-            return BadRequest("Username and/or password are required");
-        
-        var user = await authService.Register(newUser);
-
-        if (!user) return Unauthorized("Пользователь с таким именем уже существует");
-        return Ok($"{rnd.ToString()}Регистрация прошла успешно.");
-    }
-    
-    
 }

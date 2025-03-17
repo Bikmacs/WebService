@@ -626,3 +626,11 @@ C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\obj\Debug\net9.0\refint\Qui
 C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\obj\Debug\net9.0\Quizz.pdb
 C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\obj\Debug\net9.0\Quizz.genruntimeconfig.cache
 C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\obj\Debug\net9.0\ref\Quizz.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\smele\OneDrive\Desktop\asp\WebService\Quizz\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll

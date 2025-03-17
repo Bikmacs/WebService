@@ -25,7 +25,7 @@ public class AddBooksController(IAddBooksService addBooksService) : ControllerBa
         }
         return Ok("Книга успешно добавлена.");
     }
-    [HttpPost("Delete/{id}")]
+    [HttpDelete("Delete/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         if (id <= 0)
